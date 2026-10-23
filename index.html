@@ -1,1 +1,299 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SetHubble — дополнительный инструмент привлечения клиентов для маркетологов, рекламистов и специалистов по продвижению.">
+  <meta name="theme-color" content="#ffffff">
+  <title>SetHubble для маркетологов и специалистов по продвижению</title>
+  <style>
+    :root {
+      --navy: #10264f;
+      --blue: #1478f8;
+      --blue-dark: #075acb;
+      --orange: #ff9b2f;
+      --ink: #142746;
+      --muted: #586984;
+      --pale: #f4f8ff;
+      --line: #e1eaf6;
+      --white: #ffffff;
+      --shadow: 0 18px 55px rgba(22, 66, 125, .11);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 44px)); margin-inline: auto; }
+    .topbar {
+      position: relative; z-index: 5; background: rgba(255,255,255,.94);
+      border-bottom: 1px solid rgba(225,234,246,.8);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; font-size: 25px; color: var(--navy); letter-spacing: -.7px; }
+    .brand-mark { width: 32px; height: 32px; position: relative; display: inline-block; }
+    .brand-mark i { position: absolute; display: block; width: 13px; height: 13px; border-radius: 50%; background: var(--blue); }
+    .brand-mark i:nth-child(1) { left: 9px; top: 0; }
+    .brand-mark i:nth-child(2) { left: 0; top: 10px; }
+    .brand-mark i:nth-child(3) { left: 18px; top: 10px; background: #7798c9; }
+    .brand-mark i:nth-child(4) { left: 9px; top: 19px; background: var(--orange); }
+    .navlinks { display: flex; align-items: center; gap: clamp(12px, 2.2vw, 28px); }
+    .navlinks a { font-size: 14px; font-weight: 600; text-decoration: none; color: #203757; white-space: nowrap; }
+    .navlinks a:hover { color: var(--blue); }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+      min-height: 52px; padding: 13px 23px; border-radius: 999px; border: 0;
+      background: linear-gradient(100deg, var(--blue), var(--blue-dark)); color: white;
+      text-decoration: none; font-weight: 750; font-size: 15px;
+      box-shadow: 0 9px 24px rgba(20,120,248,.2); transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 13px 28px rgba(20,120,248,.27); }
+    .btn svg { width: 19px; height: 19px; flex: none; }
+    .hero { position: relative; overflow: hidden; padding: 46px 0 58px; background: linear-gradient(115deg,#f8fbff 0%,#eef6ff 48%,#fff 100%); }
+    .hero::before { content:""; position:absolute; width:480px; height:480px; border-radius:50%; background:rgba(45,139,255,.08); right:-130px; top:-170px; }
+    .hero-grid { position: relative; display: grid; grid-template-columns: .96fr 1.04fr; align-items: center; gap: 34px; }
+    .eyebrow { margin: 0 0 18px; color: var(--blue-dark); font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1.25px; }
+    h1 { margin: 0; max-width: 650px; color: var(--navy); font-size: clamp(36px, 4.5vw, 59px); line-height: 1.08; letter-spacing: -1.8px; }
+    h1 span { color: var(--blue); }
+    .hero-lead { margin: 24px 0 16px; font-size: 18px; line-height: 1.65; color: #243e63; max-width: 590px; }
+    .hero-support { margin: 0 0 26px; max-width: 570px; color: var(--muted); font-size: 15px; }
+    .hero-note { margin: 12px 0 0; color: #62718a; font-size: 12px; }
+    .hero-art { position: relative; min-width: 0; }
+    .hero-art img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 20px; box-shadow: var(--shadow); }
+    .hero-caption { position: absolute; left: 18px; bottom: 18px; max-width: 225px; padding: 12px 15px; background: rgba(255,255,255,.93); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.9); border-radius: 15px; box-shadow: 0 8px 30px rgba(18,54,102,.12); font-size: 13px; font-weight: 750; color: var(--navy); }
+    .hero-caption span { display:block; color: var(--muted); font-size: 11px; font-weight: 500; margin-top: 2px; }
+    section { padding: 82px 0; }
+    .section-soft { background: var(--pale); }
+    .section-head { max-width: 760px; margin: 0 auto 38px; text-align: center; }
+    .kicker { margin: 0 0 9px; color: var(--blue-dark); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
+    h2 { margin: 0; color: var(--navy); font-size: clamp(28px, 3.4vw, 42px); line-height: 1.18; letter-spacing: -1px; }
+    .section-head p { margin: 16px auto 0; color: var(--muted); font-size: 17px; max-width: 690px; }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .card { padding: 28px; background: white; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 28px rgba(22,66,125,.04); }
+    .iconbox { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; background: #e9f3ff; color: var(--blue); margin-bottom: 18px; }
+    .iconbox.orange { background: #fff2e3; color: #e98515; }
+    .iconbox svg { width: 25px; height: 25px; }
+    h3 { margin: 0 0 10px; color: var(--navy); font-size: 20px; line-height: 1.3; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .callout { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 34px 38px; background: var(--navy); color: white; border-radius: 28px; }
+    .callout h2 { color: white; font-size: clamp(25px,3vw,34px); }
+    .callout p { max-width: 720px; margin: 12px 0 0; color: #d2def1; }
+    .callout .btn { white-space: nowrap; background: linear-gradient(100deg,#ffad45,#ff8c20); box-shadow: 0 8px 20px rgba(255,155,47,.22); }
+    .steps { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
+    .step { display: flex; gap: 18px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: white; }
+    .step-num { flex: 0 0 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: white; font-weight: 800; }
+    .step p { margin: 0; color: var(--muted); font-size: 15px; }
+    .example { display: grid; grid-template-columns: .8fr 1.2fr; gap: 38px; align-items: center; }
+    .example-panel { padding: 32px; background: white; border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow); }
+    .example-panel ul { margin: 0; padding-left: 22px; }
+    .example-panel li { margin: 10px 0; padding-left: 5px; color: var(--muted); }
+    .example-panel li::marker { color: var(--blue); }
+    .video-frame { max-width: 900px; margin: 0 auto; overflow: hidden; border-radius: 24px; background: #071a36; box-shadow: var(--shadow); }
+    video { display: block; width: 100%; max-height: 540px; background: #071a36; }
+    .video-caption { text-align: center; color: var(--muted); margin: 18px auto 0; max-width: 650px; font-size: 14px; }
+    .final { padding: 72px 0; text-align: center; background: linear-gradient(120deg,#edf5ff,#f8fbff 60%,#fff4e8); }
+    .final p { margin: 17px auto 25px; max-width: 650px; color: var(--muted); font-size: 17px; }
+    footer { padding: 26px 0; border-top: 1px solid var(--line); color: #71809a; font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+    .footer-inner a { color: var(--blue-dark); text-decoration: none; font-weight: 700; }
+    @media (max-width: 900px) {
+      .navlinks { display: none; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-copy { max-width: 760px; }
+      .hero-art { max-width: 720px; }
+      .cards { grid-template-columns: 1fr; }
+      .example { grid-template-columns: 1fr; }
+      .callout { grid-template-columns: 1fr; }
+      .callout .btn { justify-self: start; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 30px, 1180px); }
+      .nav { min-height: 68px; }
+      .brand { font-size: 21px; }
+      .nav > .btn { min-height: 42px; padding: 10px 13px; font-size: 12px; gap: 7px; }
+      .nav > .btn svg { width: 16px; height: 16px; }
+      .hero { padding: 38px 0 42px; }
+      h1 { font-size: clamp(34px, 10vw, 47px); letter-spacing: -1.1px; }
+      .hero-lead { font-size: 16px; margin-top: 19px; }
+      .hero-support { font-size: 14px; }
+      .hero-caption { left: 10px; bottom: 10px; max-width: 190px; font-size: 12px; padding: 10px 12px; }
+      section { padding: 60px 0; }
+      .card, .step, .example-panel { padding: 23px; }
+      .steps { grid-template-columns: 1fr; }
+      .callout { padding: 27px 23px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="SetHubble — на главную">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>SetHubble</span>
+      </a>
+      <nav class="navlinks" aria-label="Главная навигация">
+        <a href="#benefits">Преимущества</a>
+        <a href="#how">Как это работает</a>
+        <a href="#example">Пример</a>
+        <a href="#video">Видео</a>
+        <a href="#about">О проекте</a>
+      </nav>
+      <a class="btn" href="https://t.me/boris_gebor" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.2 18.4 20c-.25 1.2-.9 1.5-1.85.94l-5.1-3.76-2.46 2.37c-.27.27-.5.5-1.02.5l.36-5.2 9.46-8.55c.41-.36-.09-.56-.64-.2L5.46 13.4.43 11.82c-1.09-.34-1.1-1.1.23-1.6L20.3 2.65c.9-.33 1.68.22 1.4.55Z"/></svg>
+        Обсудить сотрудничество
+      </a>
+    </div>
+  </header>
 
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">SetHubble · Для маркетологов и специалистов по продвижению</p>
+          <h1>Новый инструмент привлечения клиентов <span>для ваших заказчиков</span></h1>
+          <p class="hero-lead">Вы помогаете предпринимателям развивать бизнес. Теперь к рекламе, продвижению и работе с социальными сетями можно добавить ещё один инструмент — системное сарафанное радио.</p>
+          <p class="hero-support">SetHubble помогает бизнесу организовать рекомендации и предусмотреть вознаграждение за привлечённых покупателей. Расширьте возможности сотрудничества с предпринимателями.</p>
+          <a class="btn" href="https://t.me/boris_gebor" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.2 18.4 20c-.25 1.2-.9 1.5-1.85.94l-5.1-3.76-2.46 2.37c-.27.27-.5.5-1.02.5l.36-5.2 9.46-8.55c.41-.36-.09-.56-.64-.2L5.46 13.4.43 11.82c-1.09-.34-1.1-1.1.23-1.6L20.3 2.65c.9-.33 1.68.22 1.4.55Z"/></svg>
+            Обсудить сотрудничество
+          </a>
+          <p class="hero-note">Переход в ваш личный Telegram</p>
+        </div>
+        <div class="hero-art">
+          <img src="sethubble-marketing-hero.png" alt="Маркетолог работает за ноутбуком; вокруг показаны реклама, рекомендации и рост продаж" fetchpriority="high">
+          <div class="hero-caption">Продвижение + рекомендации<span>Дополнительный инструмент для бизнеса</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Дополнительный инструмент</p>
+          <h2>Предпринимателям нужны клиенты. Вы можете предложить ещё один способ их привлечения.</h2>
+          <p>SetHubble позволяет бизнесу организовать систему рекомендаций и предусмотреть вознаграждение за состоявшиеся покупки на установленных условиях.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v3a2 2 0 0 0 2 2h2l3 4h3l-2-5"/><path d="M7 10 18 5v14L7 14H4V10h3Z"/><path d="m19 9 2-2M19 15l2 2"/></svg></div>
+            <h3>Ещё один инструмент</h3>
+            <p>Дополните привычные услуги по рекламе и продвижению системой рекомендаций для бизнеса.</p>
+          </article>
+          <article class="card">
+            <div class="iconbox orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 19v-1a6 6 0 0 1 12 0v1H3Z"/><path d="M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.5"/></svg></div>
+            <h3>Рекомендации клиентов</h3>
+            <p>Бизнес настраивает условия программы и получает ссылку, которую можно распространять среди потенциальных покупателей.</p>
+          </article>
+          <article class="card">
+            <div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 19V5M3 19h19"/><path d="m6 15 5-5 4 3 6-7"/><path d="M16 6h5v5"/></svg></div>
+            <h3>Без предоплаты за рекламу</h3>
+            <p>В рамках этой модели вознаграждение выплачивается за состоявшуюся покупку, если выполнены установленные условия. Это не замена маркетингу, а дополнение к нему.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section-soft">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Два направления</p>
+          <h2>Как использовать SetHubble в своей деятельности</h2>
+          <p>Вы можете встроить новый инструмент в работу с предпринимателями, не отказываясь от своих основных услуг.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-num">1</span>
+            <div><h3>Предлагать инструмент предпринимателям</h3><p>Рассказывать заинтересованным клиентам о системе рекомендаций, помогать разобраться с подключением и началом работы на платформе.</p></div>
+          </article>
+          <article class="step">
+            <span class="step-num">2</span>
+            <div><h3>Расширять собственные услуги</h3><p>Предлагать рекламу, ведение социальных сетей, создание контента и распространение предложений. Стоимость этих услуг вы согласовываете с заказчиком отдельно.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="example">
+      <div class="wrap example">
+        <div>
+          <p class="kicker">Пример из практики</p>
+          <h2>Как это может работать на практике</h2>
+          <p style="color:var(--muted);font-size:17px">Допустим, вы ведёте социальные сети агентства недвижимости. SetHubble может стать дополнительным инструментом в вашем предложении для клиента.</p>
+          <a class="btn" href="https://t.me/boris_gebor" target="_blank" rel="noopener noreferrer">Обсудить мой случай <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="example-panel">
+          <ul>
+            <li>Предлагаете агентству подключить SetHubble.</li>
+            <li>Помогаете подготовить материалы для распространения предложений.</li>
+            <li>Продолжаете оказывать свои маркетинговые услуги на согласованных условиях.</li>
+            <li>Если предусмотренные партнёрские условия выполнены, можете получить дополнительное вознаграждение.</li>
+          </ul>
+          <p style="margin:18px 0 0;color:var(--muted);font-size:14px">Такой подход можно рассматривать и для салонов, сферы услуг, онлайн-проектов и других видов бизнеса.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section-soft">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Для специалистов по продвижению</p>
+          <h2>Дополнительные возможности для вашей работы</h2>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H7l-3 3V4Z"/><path d="M8 8h8M8 12h5"/></svg></div><h3>Больше решений для клиентов</h3><p>Предлагайте предпринимателям дополнительный способ организовать рекомендации и привлечение покупателей.</p></article>
+          <article class="card"><div class="iconbox orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg></div><h3>Развитие услуг</h3><p>Сочетайте платформу со своими услугами по контенту, рекламе, социальным сетям и продвижению.</p></article>
+          <article class="card"><div class="iconbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M19 5h3M20.5 3.5v3"/></svg></div><h3>Новый формат сотрудничества</h3><p>Обсуждайте с предпринимателями подходящие условия и варианты использования системы рекомендаций.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">Видеопрезентация</p>
+          <h2>Посмотрите, как устроен SetHubble</h2>
+          <p>Короткая презентация поможет понять принцип работы платформы и то, как систему рекомендаций можно использовать для привлечения клиентов.</p>
+        </div>
+        <div class="video-frame">
+          <video controls preload="metadata" playsinline>
+            <source src="prez.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео. <a href="prez.mp4">Открыть видео</a>.
+          </video>
+        </div>
+        <p class="video-caption">После просмотра можно обсудить, как этот инструмент применить в вашей работе с предпринимателями.</p>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap">
+        <p class="kicker">Следующий шаг</p>
+        <h2>Обсудим, подходит ли SetHubble для вашей работы?</h2>
+        <p>Разберём, как предложить инструмент предпринимателям и как сочетать это направление с вашими нынешними услугами.</p>
+        <a class="btn" href="https://t.me/boris_gebor" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.2 18.4 20c-.25 1.2-.9 1.5-1.85.94l-5.1-3.76-2.46 2.37c-.27.27-.5.5-1.02.5l.36-5.2 9.46-8.55c.41-.36-.09-.56-.64-.2L5.46 13.4.43 11.82c-1.09-.34-1.1-1.1.23-1.6L20.3 2.65c.9-.33 1.68.22 1.4.55Z"/></svg>
+          Обсудить сотрудничество
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>SetHubble</span></a>
+      <span>Информация о возможностях платформы не является гарантией дохода. Результат зависит от действий участников и условий программы.</span>
+      <a href="https://t.me/boris_gebor" target="_blank" rel="noopener noreferrer">Связаться в Telegram</a>
+    </div>
+  </footer>
+</body>
+</html>
